@@ -1,0 +1,35 @@
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Editor temp files ---
+*.swp
+*.swo
+*~
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# --- VS Code local workspace state ---
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# --- Obsidian local runtime/cache state ---
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/.trash/
+.obsidian/session.json
+.obsidian/plugins/*/data.json
+
+# --- Local AI tooling state (keep prompts/docs tracked elsewhere) ---
+.claude/
+.codex/
+.copilot/
