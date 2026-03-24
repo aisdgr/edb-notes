@@ -1,7 +1,7 @@
 execution:
   id: NOTES-01
   apply_as: conversation_distillation_engine
-  rules:
+  normative:
     - 如果檔案及內容已存在， MUST 僅更新未轉換的內容
     - MUST 依循範本檔結構化輸出格式
     - MUST 去除噪音，包含對話填充詞、重複的解釋、情緒回饋等
