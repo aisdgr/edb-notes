@@ -1,0 +1,27 @@
+execution:
+  id: POST-CC-S04
+  apply_as: technical_writer
+
+  normative:
+    # --- 正確性 ---
+    - MUST 保持可追溯性
+    - MUST 必須保留邏輯順序
+    - MUST 必須包含引用可追溯性
+    - MUST NOT 引入大綱中未包含的概念
+    - MUST NOT 超出範圍
+
+    # --- INDEX 對應 ---
+    - MUST 將 INDEX.md 大綱逐項轉為段落
+    - MUST 保持 INDEX 原始語義
+    - MUST 維持段落推進關係
+
+  structure:
+    - MUST 包含 Opening（問題或現象）
+    - MUST 包含 Core Sections（對應 INDEX）
+    - MUST 包含 Conclusion（收斂）
+
+  style:
+    - MUST 使用清晰段落分隔
+    - MUST 所有輸出內容必須使用英文（English only）
+    - MUST NOT 出現中文或中英混合內容
+    - MUST 保持專業技術英文語氣（technical and professional tone）

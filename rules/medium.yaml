@@ -1,0 +1,20 @@
+platform: medium
+
+structure:
+  - MUST 使用 H2/H3 作為章節
+  - MUST 包含 Context（背景說明）
+  - MUST 包含 Comparison（若存在）
+  - MUST 包含 Implication（影響）
+
+style:
+  - MUST 使用短段落（2–4 行）
+  - MUST 清晰段落分隔
+  - MUST 使用工程論述語氣
+  - MUST 避免過度學術化
+  - MUST 避免行銷語氣
+
+length:
+  - SHOULD 1500–2500 字
+
+reading:
+  - MUST 可掃讀（scannable）

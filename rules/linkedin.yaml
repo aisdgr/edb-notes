@@ -1,0 +1,17 @@
+platform: linkedin
+
+structure:
+  - MUST 開頭為強 Hook（1–2 行）
+  - MUST 使用短段落（1–2 行）
+  - MUST 結尾有 punchline 或觀點
+
+style:
+  - MUST 高壓縮表達
+  - MUST 強對比句（A vs B）
+  - MUST 使用簡單句
+
+length:
+  - SHOULD 300–800 字
+
+reading:
+  - MUST 3 秒內理解主題

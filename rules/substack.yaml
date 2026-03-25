@@ -1,0 +1,17 @@
+platform: substack
+
+structure:
+  - MUST 可包含敘事開頭
+  - MUST 可延展段落（比 Medium 更自由）
+  - MUST 包含觀點收斂
+
+style:
+  - SHOULD 允許個人語氣
+  - SHOULD 可混合故事與技術
+  - MUST 保持邏輯一致
+
+length:
+  - FLEXIBLE
+
+reading:
+  - MUST 保持連續閱讀體驗

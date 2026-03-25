@@ -84,16 +84,16 @@
 
 ## 覆蓋範圍
 
-| 概念 | 貼文 |
-| ---- | ---- |
-| NNL（Normative Natural Language） | P2 |
-| RNL（Rule Normative Language） | P2 |
-| 語義分離（Semantic Separation） | P2 |
-| Rule（結構化治理產出物） | P3 |
-| Policy (MUST) vs Constraint (MUST NOT) | P3 |
-| Decision Behavior Category | P3 |
-| Ruleset 三鐵律 | P3 |
-| Rule Library | P3 |
-| Attribute vs Imperative 分離 | P4 |
-| Boundary Architecture 兩層設計 | P4 |
-| Governance 左移 | P1, P4 |
+| 概念                                   | 貼文   |
+| -------------------------------------- | ------ |
+| NNL（Normative Natural Language）      | P2     |
+| RNL（Rule Normative Language）         | P2     |
+| 語義分離（Semantic Separation）        | P2     |
+| Rule（結構化治理產出物）               | P3     |
+| Policy (MUST) vs Constraint (MUST NOT) | P3     |
+| Decision Behavior Category             | P3     |
+| Ruleset 三鐵律                         | P3     |
+| Rule Library                           | P3     |
+| Attribute vs Imperative 分離           | P4     |
+| Boundary Architecture 兩層設計         | P4     |
+| Governance 左移                        | P1, P4 |
