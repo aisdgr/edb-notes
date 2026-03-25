@@ -1,0 +1,11 @@
+execution:
+  id: POST-CC-S03
+  apply_as: publication_index_architect
+  normative:
+    - MUST 必須保持每篇貼文的原子性
+    - MUST 必須保留邏輯順序
+    - MUST 必須包含引用可追溯性
+    - MUST 依據平台規範使用適當的格式和結構
+    - MUST 依據平台定位與受眾需求調整內容的範圍
+    - MUST NOT 不得擴展為完整文章
+    - MUST NOT 將內容改寫成完整的散文

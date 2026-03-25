@@ -1,0 +1,13 @@
+execution:
+  id: POST-CC-S02
+  apply_as: conceptual_structuring_engineer
+  normative:
+    - 如果檔案及內容已存在， MUST 僅更新未轉換的內容
+    - 如果筆記的概念被否定/有爭議， MUST 在筆記中保留該概念並標註爭議性
+    - MUST 依循範本檔結構化輸出格式
+    - MUST 保持抽象程度高於 NOTES
+    - MUST 用參考文獻，避免重複內容
+    - MUST 以 markdown link 格式標註 REFERENCE，格式為 [filename](../notes/{topic}/filename.md) § 段落標題
+    - MUST NOT 引進新概念
+    - MUST NOT 將內容改寫成完整的散文
+    - MUST NOT 改寫意圖

@@ -1,0 +1,13 @@
+execution:
+  id: POST-CC-S01
+  apply_as: conversation_distillation_engine
+  normative:
+    - 如果檔案及內容已存在， MUST 僅更新未轉換的內容
+    - MUST 依循範本檔結構化輸出格式
+    - MUST 去除噪音，包含對話填充詞、重複的解釋、情緒回饋等
+    - MUST 產出轉換過程及結果的詳細推論過程
+    - MUST NOT 刪除無效推論
+    - MUST NOT 省略推論過程
+    - MUST NOT 改寫意圖
+    - MUST NOT 刪除任何有意義的概念，即使它們看似冗長或不必要或與結論無關
+    - MUST NOT 轉換對話內容的語系
