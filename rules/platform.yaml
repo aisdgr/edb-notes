@@ -1,0 +1,134 @@
+platforms:
+  linkedin:
+    name: "LinkedIn"
+    positioning:
+      purpose: "專業曝光與思想領導建立"
+      role: "引流入口（導向 Medium / GitHub / Paper）"
+      content_type: "短觀點 / insight / 摘要式輸出"
+    audience:
+      primary:
+        - "中高階工程師"
+        - "Tech Lead / Architect"
+        - "AI 工具使用者"
+      secondary:
+        - "產品經理"
+        - "技術決策者"
+      characteristics:
+        - "時間有限"
+        - "偏好快速吸收重點"
+        - "對新觀念敏感但不閱讀長文"
+    style:
+      format:
+        length: "短文（3–10 段）"
+        structure: "段落切分明確"
+      writing_rules:
+        - "開頭 MUST 有強 hook（問題 / 結論 / 反直覺）"
+        - "段落 MUST 短（1–3 行）"
+        - "使用條列與分行增加可讀性"
+        - "關鍵句可使用強調（粗體）"
+      tone:
+        - "直接"
+        - "觀點導向"
+        - "可討論性"
+      avoid:
+        - "長篇推導"
+        - "未解釋術語"
+        - "過度技術細節"
+    strategy:
+      goal:
+        - "引發共鳴"
+        - "建立專業形象"
+        - "導流至長文"
+      call_to_action:
+        - "提出問題引導留言"
+        - "導向 Medium / GitHub / 論文"
+      decomposition:
+        rule: "一篇 Medium 可拆為 3–6 篇 LinkedIn 貼文"
+
+  medium:
+    name: "Medium"
+    positioning:
+      purpose: "系統性觀點輸出"
+      role: "核心內容承載平台"
+      content_type: "半技術 / 半論述文章"
+    audience:
+      primary:
+        - "中高階工程師"
+        - "系統架構師"
+        - "技術研究者"
+      secondary:
+        - "對 AI / SE 有興趣的開發者"
+      characteristics:
+        - "願意閱讀中長文"
+        - "重視邏輯與結構"
+        - "接受抽象概念"
+    style:
+      format:
+        length: "中長文（5–15 分閱讀）"
+        structure: "章節式（H2 / H3）"
+      writing_rules:
+        - "每篇 MUST 有單一核心主軸"
+        - "段落需具邏輯遞進"
+        - "可使用定義、分類、對比"
+        - "可包含簡化模型（非嚴格數學）"
+      tone:
+        - "解釋型"
+        - "理性"
+        - "系統化"
+      avoid:
+        - "過度學術化（如 arXiv 等級）"
+        - "情緒性敘事過多"
+        - "主軸發散"
+    strategy:
+      goal:
+        - "建立可引用觀點"
+        - "形成系列文章結構"
+        - "作為知識中樞"
+      call_to_action:
+        - "導向 GitHub / 論文"
+        - "引導閱讀系列文"
+      decomposition:
+        rule: "由 OUTLINE 拆分為多篇具原子性的文章"
+
+  substack:
+    name: "Substack"
+    positioning:
+      purpose: "長期觀點經營與讀者關係建立"
+      role: "作者品牌與思考演化載體"
+      content_type: "系列敘事 / 思考紀錄 / 技術 + 故事混合"
+
+    audience:
+      primary:
+        - "長期追蹤讀者"
+        - "研究者 / 深度工程師"
+      secondary:
+        - "對觀點演化有興趣者"
+      characteristics:
+        - "願意長期閱讀"
+        - "接受未完成的想法"
+        - "重視作者觀點而非單篇內容"
+    style:
+      format:
+        length: "中長文（不限制）"
+        structure: "可非嚴格結構"
+      writing_rules:
+        - "允許未完全收斂的結論"
+        - "可加入思考過程與脈絡"
+        - "可混合技術與敘事"
+      tone:
+        - "個人化"
+        - "探索性"
+        - "連續性"
+      avoid:
+        - "過度格式化"
+        - "僅輸出結論而無過程"
+    strategy:
+      goal:
+        - "建立長期讀者"
+        - "強化作者觀點"
+        - "承載系列敘事"
+      call_to_action:
+        - "訂閱"
+        - "延續閱讀下一篇"
+      decomposition:
+        rule: "可將 Medium 內容延伸為更完整或更個人化版本"

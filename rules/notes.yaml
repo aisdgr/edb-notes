@@ -1,5 +1,5 @@
 execution:
-  id: NOTES-01
+  id: POST-CC-S01
   apply_as: conversation_distillation_engine
   normative:
     - 如果檔案及內容已存在， MUST 僅更新未轉換的內容
