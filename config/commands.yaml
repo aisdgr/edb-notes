@@ -1,0 +1,312 @@
+# Commands Configuration
+# 命令配置
+
+metadata:
+  version: "1.0.0"
+  last_updated: "2026-03-31"
+  description: "Content Pipeline 命令定義"
+
+# ============================================
+# 命令定義
+# ============================================
+
+commands:
+  # ----------------------------------------
+  # /notes - RAW → NOTES
+  # ----------------------------------------
+  notes:
+    name: "notes"
+    aliases:
+      - "gn"
+      - "gen-notes"
+      - "generate_notes"
+    description: "從 RAW 生成 NOTES"
+    stage: "raw-to-notes"
+    stage_file: ".claude/skills/content-pipeline/stages/raw-to-notes.md"
+    command_file: ".claude/skills/content-pipeline/commands/notes.md"
+
+    parameters:
+      - name: "interactive"
+        short: "i"
+        type: "boolean"
+        default: false
+        description: "互動模式：逐步確認、關鍵決策確認、產出審核、錯誤時介入"
+
+      - name: "agent"
+        short: "a"
+        type: "boolean"
+        default: true
+        description: "代理模式：全自動執行、錯誤自動處理、產出後通知"
+
+      - name: "input"
+        type: "path"
+        required: true
+        description: "RAW 檔案路徑"
+
+      - name: "language"
+        short: "l"
+        type: "string"
+        default: null
+        description: "強制指定輸出語系（覆蓋 config 設定）"
+
+    execution:
+      mode_default: "agent"
+      interactive:
+        step_by_step: true
+        confirm_decisions: true
+        review_output: true
+        error_handling: "ask"
+      agent:
+        auto_execute: true
+        auto_error_handling: true
+        notify_on_complete: true
+
+    validation:
+      prev_stage: null
+      next_stage: "outline"
+      transition: "raw→notes"
+
+  # ----------------------------------------
+  # /outline - NOTES → OUTLINE
+  # ----------------------------------------
+  outline:
+    name: "outline"
+    aliases:
+      - "go"
+      - "gen-outline"
+      - "generate_outline"
+    description: "聚合多個 NOTES 為 OUTLINE"
+    stage: "notes-to-outline"
+    stage_file: ".claude/skills/content-pipeline/stages/notes-to-outline.md"
+    command_file: ".claude/skills/content-pipeline/commands/outline.md"
+
+    parameters:
+      - name: "interactive"
+        short: "i"
+        type: "boolean"
+        default: false
+
+      - name: "agent"
+        short: "a"
+        type: "boolean"
+        default: true
+
+      - name: "input"
+        type: "path"
+        required: true
+        description: "NOTES 目錄或檔案"
+
+      - name: "language"
+        short: "l"
+        type: "string"
+        default: null
+
+    execution:
+      mode_default: "agent"
+
+    validation:
+      prev_stage: "notes"
+      next_stage: "concept"
+      transition: "notes→outline"
+
+  # ----------------------------------------
+  # /concept - OUTLINE → CONCEPT
+  # ----------------------------------------
+  concept:
+    name: "concept"
+    aliases:
+      - "gc"
+      - "gen-concept"
+      - "generate_concept"
+    description: "從 OUTLINE 產生特定 viewpoint 的 CONCEPT"
+    stage: "outline-to-concept"
+    stage_file: ".claude/skills/content-pipeline/stages/outline-to-concept.md"
+    command_file: ".claude/skills/content-pipeline/commands/concept.md"
+
+    parameters:
+      - name: "interactive"
+        short: "i"
+        type: "boolean"
+        default: false
+
+      - name: "agent"
+        short: "a"
+        type: "boolean"
+        default: true
+
+      - name: "input"
+        type: "path"
+        required: true
+        description: "OUTLINE 檔案路徑"
+
+      - name: "viewpoint"
+        short: "v"
+        type: "string"
+        default: null
+        description: "觀點名稱（未指定會詢問）"
+
+      - name: "language"
+        short: "l"
+        type: "string"
+        default: null
+
+    execution:
+      mode_default: "agent"
+
+    validation:
+      prev_stage: "outline"
+      next_stage: "index"
+      transition: "outline→concept"
+
+  # ----------------------------------------
+  # /index - CONCEPT → INDEX
+  # ----------------------------------------
+  index:
+    name: "index"
+    aliases:
+      - "gi"
+      - "gen-index"
+      - "generate_index"
+    description: "從 CONCEPT 產生平台 INDEX"
+    stage: "concept-to-index"
+    stage_file: ".claude/skills/content-pipeline/stages/concept-to-index.md"
+    command_file: ".claude/skills/content-pipeline/commands/index.md"
+
+    parameters:
+      - name: "interactive"
+        short: "i"
+        type: "boolean"
+        default: false
+
+      - name: "agent"
+        short: "a"
+        type: "boolean"
+        default: true
+
+      - name: "input"
+        type: "path"
+        required: true
+        description: "CONCEPT 檔案路徑"
+
+      - name: "goal"
+        short: "g"
+        type: "path"
+        required: true
+        description: "Goal 檔案路徑"
+
+      - name: "platform"
+        short: "p"
+        type: "string"
+        default: null
+        description: "目標平台（逗號分隔，未指定會詢問）"
+
+      - name: "language"
+        short: "l"
+        type: "string"
+        default: null
+
+    execution:
+      mode_default: "agent"
+
+    validation:
+      prev_stage: "concept"
+      next_stage: "post"
+      transition: "concept→index"
+
+  # ----------------------------------------
+  # /post - INDEX → POST
+  # ----------------------------------------
+  post:
+    name: "post"
+    aliases:
+      - "gp"
+      - "gen-post"
+      - "generate_post"
+    description: "從 INDEX 產生完稿文章"
+    stage: "index-to-post"
+    stage_file: ".claude/skills/content-pipeline/stages/index-to-post.md"
+    command_file: ".claude/skills/content-pipeline/commands/post.md"
+
+    parameters:
+      - name: "interactive"
+        short: "i"
+        type: "boolean"
+        default: false
+
+      - name: "agent"
+        short: "a"
+        type: "boolean"
+        default: true
+
+      - name: "input"
+        type: "path"
+        required: true
+        description: "INDEX 檔案路徑"
+
+      - name: "articles"
+        type: "string"
+        default: null
+        description: "指定文章編號（逗號分隔，預設全部）"
+
+      - name: "language"
+        short: "l"
+        type: "string"
+        default: null
+
+    execution:
+      mode_default: "agent"
+
+    validation:
+      prev_stage: "index"
+      next_stage: null
+      transition: "index→post"
+
+# ============================================
+# 執行模式說明
+# ============================================
+
+execution_modes:
+  interactive:
+    description: "互動模式"
+    behaviors:
+      - "逐步確認每個操作"
+      - "關鍵決策需使用者確認"
+      - "產出後需使用者審核"
+      - "遇到錯誤時需使用者介入"
+
+  agent:
+    description: "代理模式（預設）"
+    behaviors:
+      - "全自動執行，不需使用者介入"
+      - "使用預設值處理所有決策"
+      - "錯誤時自動重試或跳過"
+      - "產出後僅通知，不需審核"
+
+# ============================================
+# 命令識別規則
+# ============================================
+
+recognition:
+  # 直接命令
+  direct:
+    pattern: "^/(notes|outline|concept|index|post)$"
+    description: "直接使用 /命令"
+
+  # 別名
+  aliases:
+    pattern: "^/(gn|go|gc|gi|gp|gen-.*)$"
+    description: "使用別名"
+
+  # 自然語言
+  natural_language:
+    patterns:
+      - pattern: "(轉換|生成|產生|建立).*(notes|outline|concept|index|post)"
+        confidence: 0.8
+      - pattern: "(聚合|合併).*outline"
+        confidence: 0.9
+      - pattern: "從.*(RAW|raw).*生成.*notes"
+        confidence: 0.9
+
+    # 歧義處理
+    ambiguity_handling: "ask"
+    ask_message: "您是否要執行 /{command}？"

@@ -1,0 +1,62 @@
+# User-Level Configuration
+# 用戶層級配置（優先級：低）
+
+metadata:
+  level: "user"
+  priority: 10
+  description: "用戶個人配置（覆蓋專案配置）"
+
+# ============================================
+# 用戶個人設定
+# ============================================
+
+# 個人資訊
+personal:
+  author: "User Name"
+  email: "user@example.com"
+
+# ============================================
+# 偏好設定
+# ============================================
+
+preferences:
+  # 預設語系偏好
+  default_language: "zh-TW"
+
+  # 預設執行模式偏好
+  default_execution_mode: "agent"
+
+  # 預設平台偏好
+  preferred_platforms:
+    - "medium"
+    - "linkedin"
+
+  # 預設 viewpoint 偏好
+  preferred_viewpoints:
+    - "technical"
+    - "business"
+
+# ============================================
+# 個人化設定
+# ============================================
+
+personalization:
+  # 寫作風格偏好
+  writing_style:
+    tone: "professional"  # professional | casual | academic
+    formality: "medium"    # high | medium | low
+
+  # 輸出格式偏好
+  output_format:
+    include_metadata: true
+    include_toc: true
+    include_references: true
+
+# ============================================
+# 用戶特定覆蓋
+# ============================================
+
+# 在此區域覆蓋專案配置的特定項目
+# 例如：
+# execution:
+#   default_mode: "interactive"  # 用戶偏好互動模式
