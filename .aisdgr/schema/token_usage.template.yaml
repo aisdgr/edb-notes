@@ -1,0 +1,15 @@
+evidence_type: token_usage
+format: json
+output_path: /home/claude/evidence/usage.{session_id}.json
+schema:
+  session_id: string
+  turns:
+    - turn_id: string
+      input_tokens: integer
+      output_tokens: integer
+      cache_read_tokens: integer
+      cache_creation_tokens: integer
+  cumulative:
+    total_input: integer
+    total_output: integer
+    total_cost: float
