@@ -1,0 +1,196 @@
+# Aggregation Rules
+# 聚合規則配置
+
+metadata:
+  version: "1.0.0"
+  last_updated: "2026-03-31"
+  description: "Content Pipeline 聚合策略配置"
+
+# ============================================
+# NOTES → OUTLINE 聚合規則
+# ============================================
+
+notes_to_outline:
+  # 聚合策略
+  strategy: "merge_deduplicate"  # 合併並去重
+
+  # 來源配置
+  sources:
+    pattern: "notes/{topic}/*.md"  # 多個 NOTES
+    recursive: false
+
+  # 輸出配置
+  output:
+    single_file: true              # 聚合為單一 OUTLINE
+    filename_pattern: "outline/{topic}.md"
+    overwrite: true                # 存在時覆蓋
+
+  # 主題相似性判斷
+  similarity:
+    enable: true
+    threshold: 0.7                 # 相似度閾值
+    method: "keyword_matching"     # 關鍵詞匹配
+
+  # 去重規則
+  deduplication:
+    enable: true
+    strategy: "keep_latest"        # 保留最新內容
+    ignore_order: true             # 忽略順序差異
+
+  # 章節合併規則
+  merging:
+    # 相同主題合併為同一章節
+    same_topic: "merge_into_section"
+    # 相關��題建立關聯
+    related_topics: "create_references"
+    # 衝突內容處理
+    conflicts: "keep_both_with_marker"
+
+  # 引用追蹤
+  references:
+    enable: true
+    format: "markdown_link"
+    pattern: "[{source_file}](../notes/{topic}/{source_file}) § {section}"
+
+# ============================================
+# OUTLINE → CONCEPT 生成規則
+# ============================================
+
+outline_to_concept:
+  # 生成策略
+  strategy: "viewpoint_driven"     # 由 viewpoint 驅動
+
+  # 來源配置
+  source:
+    type: "single"                 # 單一 OUTLINE
+    pattern: "outline/{topic}.md"
+
+  # 輸出配置
+  output:
+    multiple: true                 # 多個 CONCEPT
+    filename_pattern: "concept/{topic}-{viewpoint}.md"
+    viewpoint_driven: true         # 基於 viewpoint
+
+  # Viewpoint 配置
+  viewpoint:
+    # Viewpoint 定義位置
+    config_dir: "config/viewpoints"
+    # 支援的 viewpoint 類型
+    supported_types:
+      - "technical"                # 技術視角
+      - "business"                 # 商業視角
+      - "academic"                 # 學術視角
+      - "general"                  # 通用視角
+
+    # Viewpoint 繼承
+    inheritance:
+      enable: true
+      max_depth: 2                 # 最多繼承 2 層
+
+  # 要點映射
+  point_mapping:
+    # 從 OUTLINE 提取要點
+    extraction:
+      enable: true
+      method: "section_based"      # 基於章節
+      preserve_order: true         # 保留順序
+
+    # 待補標註
+    missing_content:
+      marker: "**內容待補**"
+      description: "OUTLINE 中缺少相關內容，需手動補充"
+
+  # 觀點衝突處理
+  conflicts:
+    strategy: "mark_and_continue"  # 標註並繼續
+    marker: "🔶 **觀點衝突**"
+
+# ============================================
+# CONCEPT → INDEX 生成規則
+# ============================================
+
+concept_to_index:
+  # 生成策略
+  strategy: "platform_specific"    # 平台特定
+
+  # 來源配置
+  source:
+    type: "single"                 # 單一 CONCEPT
+    pattern: "concept/{topic}-{viewpoint}.md"
+
+  # 輸出配置
+  output:
+    multiple: true                 # 多個 INDEX（不同平台）
+    filename_pattern: "posts/{platform}/{topic}/INDEX.md"
+    platform_driven: true          # 基於平台
+
+  # 平台配置
+  platform:
+    # 支援的平台
+    supported:
+      - "medium"
+      - "linkedin"
+      - "substack"
+
+    # 平台規則位置
+    rules_dir: "rules"
+    platform_rules: "platform.yaml"
+
+  # 內容篩選
+  filtering:
+    enable: true
+    # 依 goal.md 的 Scope 過濾
+    scope_based: true
+    # 排除標記為「不包含」的要點
+    exclude_marked: true
+
+  # 待補內容追蹤
+  missing_tracking:
+    enable: true
+    # 在 INDEX 中列出待補要點
+    list_in_index: true
+    # 提醒使用者補充
+    remind_user: true
+
+# ============================================
+# 資料流向驗證
+# ============================================
+
+validation:
+  # 嚴格模式
+  strict_mode: true
+
+  # 流向驗證
+  flow_validation:
+    # 僅允許相鄰階段
+    adjacent_only: true
+    # 禁止跨階段
+    forbid_skip: true
+    # 禁止反向
+    forbid_reverse: true
+
+  # 聚合驗證
+  aggregation_validation:
+    # NOTES→OUTLINE: 確認多對一
+    notes_outline:
+      check_multiple_sources: true
+      check_single_output: true
+
+    # OUTLINE→CONCEPT: 確認一對多
+    outline_concept:
+      check_single_source: true
+      check_viewpoint_variety: true
+
+    # CONCEPT→INDEX: 確認一對多
+    concept_index:
+      check_single_source: true
+      check_platform_variety: true
+
+  # 完整性驗證
+  completeness:
+    # 檢查所有要點都已處理
+    check_all_points: true
+    # 檢查來源標註
+    check_references: true
+    # 檢查待補標註
+    check_missing_markers: true

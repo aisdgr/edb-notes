@@ -1,0 +1,11 @@
+evidence_type: file_operations
+format: yaml
+output_path: /home/claude/evidence/files.{session_id}.yaml
+schema:
+  operations:
+    - timestamp: ISO8601
+      operation: [create|modify|delete|view]
+      path: string
+      size_bytes: integer
+      hash_before: string (if modify)
+      hash_after: string

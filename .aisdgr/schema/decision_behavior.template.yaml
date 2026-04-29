@@ -1,0 +1,17 @@
+evidence_type: decision_behavior
+format: yaml
+output_path: /home/claude/evidence/decision.{turn_id}.yaml
+schema:
+  turn_id: string
+  timestamp: ISO8601
+  user_message: string
+  assistant_reasoning: string
+  tool_calls:
+    - tool: string
+      parameters: object
+      reason: string
+  decision_points:
+    - question: string
+      chosen: string
+      reasoning: string
+      behavior_type: [explicit|implicit|inference]

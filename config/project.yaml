@@ -1,0 +1,92 @@
+# Project-Level Configuration
+# 專案層級配置（優先級：中）
+
+metadata:
+  level: "project"
+  priority: 50
+  description: "專案特定配置（覆蓋全局配置）"
+
+# ============================================
+# 專案特定設定
+# ============================================
+
+# 內容設定
+content:
+  # 專案預設語系
+  language: "zh-TW"
+  fallback_language: "en-US"
+
+  # 專案特定編碼
+  encoding: "UTF-8"
+
+# ============================================
+# 路徑設定（專案特定）
+# ============================================
+
+paths:
+  # 可根據專案需求調整路徑
+  raw_dir: "raw"
+  notes_dir: "notes"
+  outline_dir: "outline"
+  concept_dir: "concept"
+  index_dir: "posts"
+  post_dir: "posts"
+  reports_dir: "reports"
+
+# ============================================
+# 執行設定（專案特定）
+# ============================================
+
+execution:
+  # 專案預設執行模式
+  default_mode: "agent"
+
+  # 互動模式設定
+  interactive:
+    step_by_step: true
+    confirm_decisions: true
+    review_output: true
+    error_handling: "ask"
+
+  # 代理模式設定
+  agent:
+    auto_execute: true
+    auto_error_handling: true
+    notify_on_complete: true
+
+# ============================================
+# 質量設定（專案特定）
+# ============================================
+
+quality:
+  # 專案質量標準
+  dimensions:
+    - name: "完整性"
+      weight: 0.3
+      enabled: true
+
+    - name: "一致性"
+      weight: 0.25
+      enabled: true
+
+    - name: "可讀性"
+      weight: 0.25
+      enabled: true
+
+    - name: "原創性"
+      weight: 0.2
+      enabled: true
+
+  validation:
+    enable: true
+    fail_threshold: 0.6
+
+# ============================================
+# 專案特定覆蓋
+# ============================================
+
+# 在此區域覆蓋全局配置的特定項目
+# 例如：
+# pipeline:
+#   auto_trigger:
+#     enable: false  # 專案中禁用自動觸發
